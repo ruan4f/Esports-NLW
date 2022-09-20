@@ -84,7 +84,6 @@ export function Game() {
             </Text>
           )}
         />
-
       </SafeAreaView>
     </Background>
   );
