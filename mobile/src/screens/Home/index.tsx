@@ -29,7 +29,7 @@ export function Home() {
 
   return (
     <Background >
-      <SafeAreaView style={styles.container}>
+      <SafeAreaView style={styles.container} >
         <Image
           source={logoImg}
           style={styles.logo}
@@ -46,7 +46,7 @@ export function Home() {
           renderItem={({ item }) => (
             <GameCard
               data={item}
-              onPress={()=>handleOpenGame(item)}
+              onPress={() => handleOpenGame(item)}
             />
           )}
           showsHorizontalScrollIndicator={false}
