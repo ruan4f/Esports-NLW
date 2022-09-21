@@ -13,6 +13,7 @@ interface Game {
 
 export function CreateAdModal() {
   const [games, setGames] = useState<Game[]>([]);
+  const [weekDays, setWeekDays] = useState<string[]>([]);
 
   useEffect(() => {
     fetch('http://localhost:3333/games')
@@ -34,8 +35,9 @@ export function CreateAdModal() {
             <label htmlFor="game" className="font-semibold">Qual o game?</label>
             <select id="game"
               className="bg-zinc-900 py-3 px-4 rounded text-sm placeholder:text-zinc-500 appearance-none"
+              defaultValue=""
             >
-              <option disabled selected value="">Selecione o game que deseja jogar</option>
+              <option disabled value="">Selecione o game que deseja jogar</option>
               {games.map(game => {
                 return <option key={game.id} value={game.id}>{game.title}</option>
               })}
@@ -61,14 +63,33 @@ export function CreateAdModal() {
           <div className="flex gap-6">
             <div className="flex flex-col gap-2">
               <label htmlFor="weekDays" className="font-semibold">Quando costuma jogar?</label>
-              <ToggleGroup.Root type='multiple' className="grid grid-cols-4 gap-2">
-                <ToggleGroup.Item value="0" title="Domingo" className="w-8 h-8 rounded bg-zinc-900">D</ToggleGroup.Item>
-                <ToggleGroup.Item value="1" title="Segunda" className="w-8 h-8 rounded bg-zinc-900">S</ToggleGroup.Item>
-                <ToggleGroup.Item value="2" title="Terça" className="w-8 h-8 rounded bg-zinc-900">T</ToggleGroup.Item>
-                <ToggleGroup.Item value="3" title="Quarta" className="w-8 h-8 rounded bg-zinc-900">Q</ToggleGroup.Item>
-                <ToggleGroup.Item value="4" title="Quinta" className="w-8 h-8 rounded bg-zinc-900">Q</ToggleGroup.Item>
-                <ToggleGroup.Item value="5" title="Sexta" className="w-8 h-8 rounded bg-zinc-900">S</ToggleGroup.Item>
-                <ToggleGroup.Item value="6" title="Sábado" className="w-8 h-8 rounded bg-zinc-900">S</ToggleGroup.Item>
+              <ToggleGroup.Root
+                type='multiple'
+                className="grid grid-cols-4 gap-2"
+                value={weekDays}
+                onValueChange={setWeekDays}
+              >
+                <ToggleGroup.Item value="0" title="Domingo" className={`w-8 h-8 rounded bg-zinc-900 ${weekDays.includes('0') ? 'bg-violet-500' : ''}`}>
+                  D
+                </ToggleGroup.Item>
+                <ToggleGroup.Item value="1" title="Segunda" className={`w-8 h-8 rounded bg-zinc-900 ${weekDays.includes('0') ? 'bg-violet-500' : ''}`}>
+                  S
+                </ToggleGroup.Item>
+                <ToggleGroup.Item value="2" title="Terça" className={`w-8 h-8 rounded bg-zinc-900 ${weekDays.includes('0') ? 'bg-violet-500' : ''}`}>
+                  T
+                </ToggleGroup.Item>
+                <ToggleGroup.Item value="3" title="Quarta" className={`w-8 h-8 rounded bg-zinc-900 ${weekDays.includes('0') ? 'bg-violet-500' : ''}`}>
+                  Q
+                </ToggleGroup.Item>
+                <ToggleGroup.Item value="4" title="Quinta" className={`w-8 h-8 rounded bg-zinc-900 ${weekDays.includes('0') ? 'bg-violet-500' : ''}`}>
+                  Q
+                </ToggleGroup.Item>
+                <ToggleGroup.Item value="5" title="Sexta" className={`w-8 h-8 rounded bg-zinc-900 ${weekDays.includes('0') ? 'bg-violet-500' : ''}`}>
+                  S
+                </ToggleGroup.Item>
+                <ToggleGroup.Item value="6" title="Sábado" className={`w-8 h-8 rounded bg-zinc-900 ${weekDays.includes('0') ? 'bg-violet-500' : ''}`}>
+                  S
+                </ToggleGroup.Item>
               </ToggleGroup.Root>
             </div>
 
