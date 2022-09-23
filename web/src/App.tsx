@@ -1,6 +1,6 @@
 import * as Dialog from '@radix-ui/react-dialog';
+import axios from 'axios';
 import { useEffect, useState } from 'react';
-
 import logoImg from './assets/logo-nlw-esports.svg';
 import './styles/main.css';
 
@@ -21,11 +21,9 @@ function App() {
   const [games, setGames] = useState<Game[]>([]);
 
   useEffect(() => {
-    fetch('http://localhost:3333/games')
-      .then(response => response.json())
-      .then(data => {
-        setGames(data);
-      });
+    axios('http://localhost:3333/games').then(response => {
+      setGames(response.data);
+    });
   }, []);
 
   return (
@@ -53,7 +51,7 @@ function App() {
 
       <Dialog.Root>
         <CreateAdBanner />
-        <CreateAdModal />        
+        <CreateAdModal />
       </Dialog.Root>
 
     </div>
