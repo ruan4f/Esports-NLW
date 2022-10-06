@@ -9,7 +9,8 @@ export async function getPushNotificationToken() {
 
   if (granted) {
     const pushToken = await Notifications.getExpoPushTokenAsync();
-
+    console.log('NOTIFICATION TOKEN => ', pushToken.data);
+    
     return pushToken.data;
   }
 }
